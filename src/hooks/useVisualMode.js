@@ -1,12 +1,9 @@
-import {React, useState} from "react";
+import { React, useState } from "react";
 
 function useVisualMode(initial) {
 
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
-
-  console.log("mode: ", mode)
-  console.log("history: ", history)
 
   // transition to the next mode
   const transition = (newMode, replace = false) => {
@@ -20,7 +17,7 @@ function useVisualMode(initial) {
     } else {
       setHistory(prev => [...prev.slice(0, -1), newMode]);
     }
-   
+
   }
 
   // history is an array of modes
@@ -28,7 +25,7 @@ function useVisualMode(initial) {
 
   // go back to the previous mode
   const back = () => {
-    
+
     if (history.length > 1) {
 
       // get the previous mode from the history array
@@ -40,7 +37,7 @@ function useVisualMode(initial) {
       // remove last element from the history array
       setHistory(history.slice(0, -1));
     }
-    
+
   }
 
   return { mode, transition, back };

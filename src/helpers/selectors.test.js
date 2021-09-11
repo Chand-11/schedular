@@ -2,9 +2,6 @@ import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "help
 
 // --------------------- Mock data --------------------------- //
 
-
-// mock data 
-
 const state = {
 
   days: [
@@ -39,7 +36,7 @@ const state = {
   },
 
   interviewers: {
-    "1": {  
+    "1": {
       "id": 1,
       "name": "Sylvia Palmer",
       "avatar": "https://i.imgur.com/LpaY82x.png"
@@ -125,7 +122,6 @@ test("getInterview returns an object with the interviewer data", () => {
     })
   );
 });
-
 
 test("getInterview returns null if no interview is booked", () => {
   const result = getInterview(state, state.appointments["2"].interview);

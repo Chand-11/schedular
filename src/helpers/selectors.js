@@ -1,3 +1,34 @@
+//------------------------- countEmptySpots ------------------------------ //
+
+const countEmptySpots = (appointments, day) => {
+  let emptySpots = 0;
+
+  for (const appointment of day.appointments) {
+
+    if (appointments[appointment].interview === null) {
+      emptySpots ++;
+    }
+  }
+
+  return emptySpots;
+};
+
+// --------------------------------- updateSpots ----------------------------- //
+
+// create days array without mutating original
+const updateSpots = function(state, appointments) {
+
+  const days = [...state.days];
+
+  const day = {...days.find(day => day.name === state.day)};
+
+  // calculate & update new spots for that day
+  day.spots = countEmptySpots(appointments, day);
+
+  days.splice(day.id - 1, 1, day);
+
+  return days;
+};
 
 // returns an array of appointments for that day
 function getAppointmentsForDay(state, dayName) {
@@ -63,12 +94,11 @@ function getAppointmentsForDay(state, dayName) {
    }
     return null;
   }
-  
-  
+    
   
   
   // ----------------- Exported functions -------------------- //
-  export {getAppointmentsForDay, getInterview, getInterviewersForDay};
+  export {getAppointmentsForDay, getInterview, getInterviewersForDay, countEmptySpots, updateSpots};
   
   // module.exports = {getAppointmentsForDay};
   //1. export default --> to import default export, need to import without curly braces
