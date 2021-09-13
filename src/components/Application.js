@@ -15,8 +15,6 @@ export default function Application(props) {
   } = useApplicationData();
 
   
-
-
   // call function to get the appointments for a certain day depending on the
   // state of the selected day
   const dailyAppointments = getAppointmentsForDay(state, state.day);
@@ -37,13 +35,9 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <DayList
-            // CREATE PROPS and pass them to DayList
-            day={state.day}
-            days={state.days}
-            setDay={setDay}
-          />
+          <DayList days={state.days} day={state.day} setDay={setDay} />
         </nav>
+
         <img
           className="sidebar__lhl sidebar--centered"
           src="images/lhl.png"

@@ -1,24 +1,17 @@
-import DayListItem from './DayListItem'
-import React from 'react'
+import React from 'react';
+
+import DayListItem from './DayListItem';
 
 export default function DayList(props) {
+  const result = props.days.map((day) => (
+    <DayListItem
+      key={day.id}
+      name={day.name}
+      spots={day.spots}
+      selected={day.name === props.day}
+      setDay={() => props.setDay(day.name)}
+    />
+  ));
 
-  const daysArr = props.days.map((day) => {
-    return (
-      <DayListItem 
-        // in React, we need to uniquely identify each component with a key prop!! MUST
-        key={day.id} 
-        name={day.name} 
-        spots={day.spots} 
-        selected={day.name === props.day} 
-        setDay={props.setDay} 
-      />
-    )
-  })
-  
-  return (
-    <ul>
-      {daysArr}
-    </ul>
-  )
+  return <ul>{result}</ul>;
 }
